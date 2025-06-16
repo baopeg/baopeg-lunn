@@ -2,3 +2,5 @@
 
 ## CNN
 
+## LeNet(https://github.com/baopeg/baopeg-lunn/tree/main/cnn/LeNet)
+
