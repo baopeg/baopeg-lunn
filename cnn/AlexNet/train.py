@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
+from tqdm import tqdm
 from torch.utils.data import DataLoader
 from AlexNet import AlexNet
 import time
@@ -37,7 +38,7 @@ optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.
 def train(epoch):
     model.train()
     running_loss = 0.0
-    for i, data in enumerate(trainloader, 0):
+    for i, data in tqdm(enumerate(trainloader,0)):
         inputs, labels = data
         inputs, labels = inputs.to(device), labels.to(device)
         
@@ -55,18 +56,32 @@ def train(epoch):
 
 # 测试函数
 def test():
+    # 1. 设置模型为评估模式
     model.eval()
+    
+    # 2. 初始化统计变量
     correct = 0
     total = 0
+    
+    # 3. 禁用梯度计算
     with torch.no_grad():
-        for data in testloader:
+        # 4. 遍历测试数据集
+        for data in tqdm(testloader):
+            # 5. 获取批处理数据
             images, labels = data
             images, labels = images.to(device), labels.to(device)
+            
+            # 6. 前向传播计算输出
             outputs = model(images)
+            
+            # 7. 获取预测结果
             _, predicted = torch.max(outputs.data, 1)
+            
+            # 8. 统计正确预测数
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     
+    # 9. 计算准确率
     accuracy = 100 * correct / total
     print(f'测试准确率: {accuracy:.2f}%')
     return accuracy
