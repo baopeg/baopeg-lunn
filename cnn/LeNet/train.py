@@ -59,6 +59,7 @@ def main():
     model = LeNet5().to(device)
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
     criterion = nn.CrossEntropyLoss()
+    # criterion = nn.HuberLoss()  胡巴损失一般用回归任务
 
     # 训练循环
     for epoch in range(1, args.epochs + 1):
