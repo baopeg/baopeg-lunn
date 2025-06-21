@@ -63,6 +63,7 @@ class AlexNet(nn.Module):
     
 if __name__ == "__main__":
     model = AlexNet(num_classes=10)
-    input = torch.randn(1, 3, 227, 227)  # 输入尺寸: 227x227x3
-    output = model(input)
-    print(f"输出尺寸: {output.size()}")  # 预期: torch.Size([1, 10])
+    print(model)
+    # input = torch.randn(1, 3, 227, 227)  # 输入尺寸: 227x227x3
+    # output = model(input)
+    # print(f"输出尺寸: {output.size()}")  # 预期: torch.Size([1, 10])
