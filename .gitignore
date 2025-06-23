@@ -9,6 +9,7 @@ build/
 # 数据与模型
 /data/
 /model/
+/cnn/ResNet/data/
 
 # 环境相关
 .env
